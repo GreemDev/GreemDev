@@ -1,7 +1,7 @@
 ### Hey there, 
 I'm GreemDev.
 
-I'm an 18 year old hobbyist .NET and JVM developer.
+I'm a 19 year old hobbyist .NET and JVM developer.
 
 [Volte](https://github.com/Ultz/Volte) is currently my main project, and I have secondary projects as well, such as [Core](https://github.com/GreemDev/Core).
 
