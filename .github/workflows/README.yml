@@ -1,0 +1,32 @@
+name: README
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  README:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup GLI
+        uses: GreemDev/setup-gli-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate README.md content
+        run: gli gp -u GreemDev -H .github/README_HEADER -o "Polyhaze;gruke-build;Ryubing" -e "GreemDev/labeler-action;Polyhaze/SharpDB;Polyhaze/Extensions;Polyhaze/XNFC;Polyhaze/qmk2srgb"
+        shell: bash
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit --amend --no-edit --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" -m "[scheduled] Update README.md"
+          git push --force
